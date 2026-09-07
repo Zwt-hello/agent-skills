@@ -1,0 +1,7 @@
+interface:
+  display_name: "ZWT 双向钢人决策审查"
+  short_description: "先完整重述真正问题，再做双向钢人论证、关键提问并形成行动判断"
+  default_prompt: "使用 $zwt-decision-steelman，先用最完整、最有力的方式重述我真正想解决的问题，再做双向钢人论证并找出关键变量。"
+
+policy:
+  allow_implicit_invocation: false

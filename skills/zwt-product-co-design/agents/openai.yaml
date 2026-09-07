@@ -1,0 +1,7 @@
+interface:
+  display_name: "ZWT 产品共创与确认"
+  short_description: "根据上下文补全产品功能与交互方案，并在实施前与用户确认"
+  default_prompt: "使用 $zwt-product-co-design 根据上下文补全并修正这个产品需求，形成完整功能与交互方案供我确认，不要直接实施。"
+
+policy:
+  allow_implicit_invocation: false
