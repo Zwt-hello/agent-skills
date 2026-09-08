@@ -1,0 +1,7 @@
+interface:
+  display_name: "Zwt-Capability Mapping"
+  short_description: "Choose owners and seams with proportional investigation"
+  default_prompt: "Use $zwt-capability-mapping to choose a supported owner and implementation seam through the smallest relevant path, resolve compatibility only when needed, and proceed."
+
+policy:
+  allow_implicit_invocation: true
