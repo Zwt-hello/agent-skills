@@ -1,14 +1,18 @@
 # Agent Skills
 
-ZWT 的个人 AI Agent 技能集合，用于产品共创、需求确认、决策审查与技术能力映射。仓库说明使用中文，技能正文保留各自原始语言，每个 skill 独立维护。
+ZWT 的个人 AI Agent 技能集合，涵盖问题澄清、产品共创、决策审查、开发质量、技术能力映射与多 Agent 协作。仓库说明使用中文，技能正文保留各自原始语言，每个 skill 独立维护。
 
 ## 技能列表
 
-| Skill | 用途 | 显式调用 |
-| --- | --- | --- |
-| [产品共创与确认](skills/zwt-product-co-design/SKILL.md) | 补全和修正产品需求，形成完整功能、交互与验收方案，在实施前与用户确认。 | `$zwt-product-co-design` |
-| [双向钢人决策审查](skills/zwt-decision-steelman/SKILL.md) | 完整重述真正问题，构建支持与反对的最强可信论证，识别关键变量并形成判断。 | `$zwt-decision-steelman` |
-| [Capability Mapping（能力映射）](skills/zwt-capability-mapping/SKILL.md) | 为框架集成、跨子系统改动与迁移选择权威能力归属和受支持的实现接入点，按需处理兼容性。 | `$zwt-capability-mapping` |
+| Skill | 用途 | 显式调用 | 调用策略 |
+| --- | --- | --- | --- |
+| [意图洞察与强重述](skills/zwt-intent-clarifier/SKILL.md) | 结合上下文补全含糊的表达，强重述真正问题，当轮给出建议并邀请校正；只讨论，不实施。 | `$zwt-intent-clarifier` | 仅显式 |
+| [苏格拉底式问题澄清](skills/zwt-socratic-inquiry/SKILL.md) | 通过最多六个逐一提出的问题澄清困惑，形成六项摘要，确认新问题后再给判断与建议。 | `$zwt-socratic-inquiry` | 仅显式 |
+| [产品共创与确认](skills/zwt-product-co-design/SKILL.md) | 补全和修正产品需求，形成完整功能、交互与验收方案，在实施前与用户确认。 | `$zwt-product-co-design` | 仅显式 |
+| [双向钢人决策审查](skills/zwt-decision-steelman/SKILL.md) | 完整重述真正问题，构建支持与反对的最强可信论证，识别关键变量并形成判断。 | `$zwt-decision-steelman` | 仅显式 |
+| [通用开发质量基线](skills/zwt-development-baseline/SKILL.md) | 在已授权开发中补齐必要的产品与工程保障，完成受影响的旧实现清理，选择最简单的充分实现并按风险验证。 | `$zwt-development-baseline` | 允许隐式 |
+| [Capability Mapping（能力映射）](skills/zwt-capability-mapping/SKILL.md) | 为框架集成、跨子系统改动与迁移选择权威能力归属和受支持的实现接入点，按需处理兼容性。 | `$zwt-capability-mapping` | 允许隐式 |
+| [Orchestrator（协作编排）](skills/zwt-orchestrator/SKILL.md) | 由当前主模型负责整体结果，按任务选择工作模型与推理强度，明确子任务归属并验证集成结果。 | `$zwt-orchestrator` | 仅显式 |
 
 ## 安装
 
@@ -16,21 +20,45 @@ ZWT 的个人 AI Agent 技能集合，用于产品共创、需求确认、决策
 
 ```text
 使用 $skill-installer 从 Zwt-hello/agent-skills 安装以下 skills：
+- skills/zwt-intent-clarifier
+- skills/zwt-socratic-inquiry
 - skills/zwt-product-co-design
 - skills/zwt-decision-steelman
+- skills/zwt-development-baseline
 - skills/zwt-capability-mapping
+- skills/zwt-orchestrator
 如果本地存在同名 skill，先停止，不要覆盖。
 ```
 
 也可以单独提供某个 skill 的 GitHub 目录链接：
 
+- [安装目录：意图洞察与强重述](https://github.com/Zwt-hello/agent-skills/tree/main/skills/zwt-intent-clarifier)
+- [安装目录：苏格拉底式问题澄清](https://github.com/Zwt-hello/agent-skills/tree/main/skills/zwt-socratic-inquiry)
 - [安装目录：产品共创与确认](https://github.com/Zwt-hello/agent-skills/tree/main/skills/zwt-product-co-design)
 - [安装目录：双向钢人决策审查](https://github.com/Zwt-hello/agent-skills/tree/main/skills/zwt-decision-steelman)
+- [安装目录：通用开发质量基线](https://github.com/Zwt-hello/agent-skills/tree/main/skills/zwt-development-baseline)
 - [安装目录：Capability Mapping](https://github.com/Zwt-hello/agent-skills/tree/main/skills/zwt-capability-mapping)
+- [安装目录：Orchestrator](https://github.com/Zwt-hello/agent-skills/tree/main/skills/zwt-orchestrator)
 
 每个目录中的 `SKILL.md` 是技能正文，`agents/openai.yaml` 提供 Codex 的展示信息和调用策略。部分技能还包含 `references/` 参考资料，安装时应保留完整目录。适配其他 Agent 工具时，请按其技能格式与加载规则处理。
 
 ## 使用示例
+
+### 意图洞察与强重述
+
+```text
+使用 $zwt-intent-clarifier，结合上下文理解我说的“让任务管理更轻松”真正想解决什么，完整重述问题并给出建议；只讨论，不实施。
+```
+
+适合希望先得到最佳理解和建议，再校正方向的讨论。
+
+### 苏格拉底式问题澄清
+
+```text
+使用 $zwt-socratic-inquiry，我不确定团队效率低是流程问题还是工具问题。请逐题追问，帮我厘清真正想问的问题，确认后再给建议。
+```
+
+后续回答或确认时再次调用 `$zwt-socratic-inquiry`，沿用已有问诊阶段和累计问题数。最多六问，信息足够时提前收束。
 
 ### 产品共创与确认
 
@@ -50,6 +78,14 @@ ZWT 的个人 AI Agent 技能集合，用于产品共创、需求确认、决策
 
 产品共创与决策审查都配置为仅显式调用。产品共创用于补全并确认方案，决策审查用于判断方向与取舍；可以独立使用，也可以按需要先审查方向，再共创产品方案。
 
+### 通用开发质量基线
+
+```text
+使用 $zwt-development-baseline，完成已授权的任务列表功能改动，按实际数据规模与失败风险补齐必要保障，清理本次替换后失去用途的旧实现，并验证关键行为。
+```
+
+该技能允许按开发任务隐式调用。根据具体场景选择必要保障，不将纯讨论或只读审查转为实施，也不默认增加复杂架构。
+
 ### Capability Mapping（能力映射）
 
 ```text
@@ -58,20 +94,40 @@ ZWT 的个人 AI Agent 技能集合，用于产品共创、需求确认、决策
 
 该技能允许按任务上下文隐式调用，也可以显式调用。简单改动沿用既有模式；涉及框架能力、跨子系统职责或迁移时，按任务规模核实能力归属与实现方式。兼容性决策的补充规则见 [Compatibility and Breaking Evolution](skills/zwt-capability-mapping/references/compatibility.md)。
 
+### Orchestrator（协作编排）
+
+```text
+使用 $zwt-orchestrator，协调这项已授权的开发任务：只拆分有实际收益的独立工作，明确文件归属和验收条件，合理选择可用工作模型，检查并集成结果。
+```
+
+需要宿主提供子 Agent 能力。技能不绑定固定模型代际；当前主模型负责整体结果，简单或紧密耦合的工作保留在主任务内。
+
 ## 目录结构
 
 ```text
 skills/
+├── zwt-intent-clarifier/
+│   ├── SKILL.md
+│   └── agents/openai.yaml
+├── zwt-socratic-inquiry/
+│   ├── SKILL.md
+│   └── agents/openai.yaml
 ├── zwt-product-co-design/
 │   ├── SKILL.md
 │   └── agents/openai.yaml
 ├── zwt-decision-steelman/
 │   ├── SKILL.md
 │   └── agents/openai.yaml
-└── zwt-capability-mapping/
+├── zwt-development-baseline/
+│   ├── SKILL.md
+│   └── agents/openai.yaml
+├── zwt-capability-mapping/
+│   ├── SKILL.md
+│   ├── agents/openai.yaml
+│   └── references/compatibility.md
+└── zwt-orchestrator/
     ├── SKILL.md
-    ├── agents/openai.yaml
-    └── references/compatibility.md
+    └── agents/openai.yaml
 ```
 
 新增技能时，在 `skills/` 下创建独立目录并更新本页列表。每个技能的具体约束以其 `SKILL.md` 为准。

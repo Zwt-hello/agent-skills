@@ -1,0 +1,7 @@
+interface:
+  display_name: "ZWT 意图洞察与强重述"
+  short_description: "结合上下文主动表达真正的问题与需求，给出建议并辅助讨论，不直接实施"
+  default_prompt: "使用 $zwt-intent-clarifier，结合上下文主动理解我没有表达完整的意图，用最完整、最有力的方式重述我真正想解决的问题，并给出建议；只讨论，不实施。"
+
+policy:
+  allow_implicit_invocation: false

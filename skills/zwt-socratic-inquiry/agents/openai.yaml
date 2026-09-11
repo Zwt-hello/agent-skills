@@ -1,0 +1,7 @@
+interface:
+  display_name: "ZWT 苏格拉底式问题澄清"
+  short_description: "通过最多六次逐题追问厘清真正想问的问题，确认后再给判断与建议"
+  default_prompt: "使用 $zwt-socratic-inquiry，通过最多六个逐一提出的问题，帮我厘清真正想问的本质问题；先不要给建议，等我确认新问题后再判断。我的困惑是："
+
+policy:
+  allow_implicit_invocation: false

@@ -1,0 +1,7 @@
+interface:
+  display_name: "ZWT Orchestrator"
+  short_description: "Delegate with clear ownership and deliberate model cost"
+  default_prompt: "Use $zwt-orchestrator to delegate this task with deliberate model cost, clear ownership, and evidence-backed integration."
+
+policy:
+  allow_implicit_invocation: false

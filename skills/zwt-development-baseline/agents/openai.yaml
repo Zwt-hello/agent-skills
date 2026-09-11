@@ -1,0 +1,6 @@
+interface:
+  display_name: "ZWT 通用开发质量基线"
+  short_description: "开发时主动补齐必要质量保障，按场景验证，选择最简单的充分实现并避免过度设计"
+  default_prompt: "使用 $zwt-development-baseline，在已授权的开发范围内补齐必要的产品与工程保障，选择最简单的充分实现并验证，避免过度设计。"
+policy:
+  allow_implicit_invocation: true
