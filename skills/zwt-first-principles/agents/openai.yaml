@@ -1,0 +1,6 @@
+interface:
+  display_name: "ZWT 第一性原理拆解与重构"
+  short_description: "区分事实、假设、目标与约束，重新推导可行路径，明确成立前提和最小验证，只讨论不实施"
+  default_prompt: "使用 $zwt-first-principles，从基本事实、目标和约束重新推导可行路径，指出表面修补、成立前提和第一步验证；只讨论，不实施。我想解决的问题是："
+policy:
+  allow_implicit_invocation: false

@@ -1,0 +1,6 @@
+interface:
+  display_name: "ZWT 目标导向与路径审查"
+  short_description: "区分目标与手段，审查原方案和替代路径，建议保留、简化或替换，仅当轮讨论且不直接实施"
+  default_prompt: "使用 $zwt-goal-path-review，明确我的目标与约束，审查当前做法是否合适，并建议保留、简化或替换；不要为求新强行推翻原方案，仅本轮讨论，不直接实施。我的任务或方案是："
+policy:
+  allow_implicit_invocation: false

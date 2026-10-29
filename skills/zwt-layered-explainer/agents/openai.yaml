@@ -1,0 +1,6 @@
+interface:
+  display_name: "ZWT 双层讲解与理解检查"
+  short_description: "先用生活例子建立直觉，再解释专业机制与边界，整理术语对应和易错点，并用三题检查理解"
+  default_prompt: "使用 $zwt-layered-explainer，分小白版和专业版讲解，并整理术语对应、易错点和三个理解检查问题。我想学习的是："
+policy:
+  allow_implicit_invocation: false

@@ -1,6 +1,6 @@
 # Agent Skills
 
-ZWT 的个人 AI Agent 技能集合，涵盖问题澄清、产品共创、决策审查、开发质量、技术能力映射与多 Agent 协作。仓库说明使用中文，技能正文保留各自原始语言，每个 skill 独立维护。
+ZWT 的个人 AI Agent 技能集合，涵盖问题澄清、第一性原理分析、路径审查、分层学习、产品共创、决策审查、开发质量、技术能力映射与多 Agent 协作。仓库说明使用中文，技能正文保留各自原始语言，每个 skill 独立维护。
 
 ## 技能列表
 
@@ -8,6 +8,9 @@ ZWT 的个人 AI Agent 技能集合，涵盖问题澄清、产品共创、决策
 | --- | --- | --- | --- |
 | [意图洞察与强重述](skills/zwt-intent-clarifier/SKILL.md) | 结合上下文补全含糊的表达，强重述真正问题，当轮给出建议并邀请校正；只讨论，不实施。 | `$zwt-intent-clarifier` | 仅显式 |
 | [苏格拉底式问题澄清](skills/zwt-socratic-inquiry/SKILL.md) | 通过最多六个逐一提出的问题澄清困惑，形成六项摘要，确认新问题后再给判断与建议。 | `$zwt-socratic-inquiry` | 仅显式 |
+| [第一性原理拆解与重构](skills/zwt-first-principles/SKILL.md) | 区分事实、假设、目标与资源约束，重新推导可行路径，明确成立前提和第一步验证；只讨论，不实施。 | `$zwt-first-principles` | 仅显式 |
+| [目标导向与路径审查](skills/zwt-goal-path-review/SKILL.md) | 区分目标与手段，核实关键约束，比较原方案和有价值的替代路径，建议保留、简化或替换；只讨论，不实施。 | `$zwt-goal-path-review` | 仅显式 |
+| [双层讲解与理解检查](skills/zwt-layered-explainer/SKILL.md) | 用小白版和专业版解释概念，配具体例子，整理术语对应、易错点及三个理解检查问题。 | `$zwt-layered-explainer` | 仅显式 |
 | [产品共创与确认](skills/zwt-product-co-design/SKILL.md) | 补全和修正产品需求，形成完整功能、交互与验收方案，在实施前与用户确认。 | `$zwt-product-co-design` | 仅显式 |
 | [双向钢人决策审查](skills/zwt-decision-steelman/SKILL.md) | 完整重述真正问题，构建支持与反对的最强可信论证，识别关键变量并形成判断。 | `$zwt-decision-steelman` | 仅显式 |
 | [通用开发质量基线](skills/zwt-development-baseline/SKILL.md) | 在已授权开发中补齐必要的产品与工程保障，完成受影响的旧实现清理，选择最简单的充分实现并按风险验证。 | `$zwt-development-baseline` | 允许隐式 |
@@ -22,6 +25,9 @@ ZWT 的个人 AI Agent 技能集合，涵盖问题澄清、产品共创、决策
 使用 $skill-installer 从 Zwt-hello/agent-skills 安装以下 skills：
 - skills/zwt-intent-clarifier
 - skills/zwt-socratic-inquiry
+- skills/zwt-first-principles
+- skills/zwt-goal-path-review
+- skills/zwt-layered-explainer
 - skills/zwt-product-co-design
 - skills/zwt-decision-steelman
 - skills/zwt-development-baseline
@@ -34,6 +40,9 @@ ZWT 的个人 AI Agent 技能集合，涵盖问题澄清、产品共创、决策
 
 - [安装目录：意图洞察与强重述](https://github.com/Zwt-hello/agent-skills/tree/main/skills/zwt-intent-clarifier)
 - [安装目录：苏格拉底式问题澄清](https://github.com/Zwt-hello/agent-skills/tree/main/skills/zwt-socratic-inquiry)
+- [安装目录：第一性原理拆解与重构](https://github.com/Zwt-hello/agent-skills/tree/main/skills/zwt-first-principles)
+- [安装目录：目标导向与路径审查](https://github.com/Zwt-hello/agent-skills/tree/main/skills/zwt-goal-path-review)
+- [安装目录：双层讲解与理解检查](https://github.com/Zwt-hello/agent-skills/tree/main/skills/zwt-layered-explainer)
 - [安装目录：产品共创与确认](https://github.com/Zwt-hello/agent-skills/tree/main/skills/zwt-product-co-design)
 - [安装目录：双向钢人决策审查](https://github.com/Zwt-hello/agent-skills/tree/main/skills/zwt-decision-steelman)
 - [安装目录：通用开发质量基线](https://github.com/Zwt-hello/agent-skills/tree/main/skills/zwt-development-baseline)
@@ -59,6 +68,30 @@ ZWT 的个人 AI Agent 技能集合，涵盖问题澄清、产品共创、决策
 ```
 
 后续回答或确认时再次调用 `$zwt-socratic-inquiry`，沿用已有问诊阶段和累计问题数。最多六问，信息足够时提前收束。
+
+### 第一性原理拆解与重构
+
+```text
+使用 $zwt-first-principles，分析我们是否需要自建知识库检索系统。区分基本事实、未验证假设、目标与约束，重新推导可行路径，明确成立前提和第一步验证；只讨论，不实施。
+```
+
+适合重新检查方案赖以成立的基本条件。推导结果可以保留、简化或重组原方案，不以推翻已有做法为目标，也不自动执行验证实验。
+
+### 目标导向与路径审查
+
+```text
+使用 $zwt-goal-path-review，审查“每天手工导出多份报表，再用鼠标自动化合并”的方案。先明确目标与必须保留的约束，再判断应该保留、简化还是替换；只讨论，不实施。
+```
+
+适合目标已有一定清晰度、需要判断当前做法是否合适的场景。核实替代路径的权限、能力和成本，不因流程繁琐就认定应当替换。
+
+### 双层讲解与理解检查
+
+```text
+使用 $zwt-layered-explainer，分小白版和专业版讲解数据库事务，用同一个例子说明机制与边界，最后整理术语对应、易错点和三个理解检查问题。
+```
+
+一次完成两层讲解与末尾整理，默认先不给检查题答案。用户作答后反馈具体理解与偏差；需要答案或解析时可以直接提出。
 
 ### 产品共创与确认
 
@@ -110,6 +143,15 @@ skills/
 │   ├── SKILL.md
 │   └── agents/openai.yaml
 ├── zwt-socratic-inquiry/
+│   ├── SKILL.md
+│   └── agents/openai.yaml
+├── zwt-first-principles/
+│   ├── SKILL.md
+│   └── agents/openai.yaml
+├── zwt-goal-path-review/
+│   ├── SKILL.md
+│   └── agents/openai.yaml
+├── zwt-layered-explainer/
 │   ├── SKILL.md
 │   └── agents/openai.yaml
 ├── zwt-product-co-design/
